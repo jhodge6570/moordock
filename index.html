@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moordock — Your AI. Your Infrastructure. Your Rules.</title>
+<meta name="description" content="On-premise LLM orchestration for enterprise ERP. Deploy local AI inside your own infrastructure — no cloud, no data leakage, full enterprise control.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --teal: #1D9E75; --teal-dark: #0F6E56; --teal-light: #E1F5EE; --teal-mid: #5DCAA5; --text: #1a1a18; --text-muted: #5F5E5A; --border: #D3D1C7; --bg: #ffffff; --bg-soft: #F9F8F5; --terminal-bg: #0F1A14; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; }
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 2.5rem; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); z-index: 100; }
+  .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; letter-spacing: -0.5px; color: var(--text); text-decoration: none; }
+  .logo span { color: var(--teal); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; font-size: 0.9rem; color: var(--text-muted); transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta { font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500; padding: 0.5rem 1.2rem; background: var(--teal); color: #fff; border: none; border-radius: 6px; cursor: pointer; text-decoration: none; transition: background 0.2s; }
+  .nav-cta:hover { background: var(--teal-dark); }
+  .hero { max-width: 960px; margin: 0 auto; padding: 5rem 2rem 3rem; }
+  .hero-tag { display: inline-block; font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: var(--teal); background: var(--teal-light); padding: 4px 14px; border-radius: 99px; margin-bottom: 2rem; }
+  h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.5rem, 5vw, 4.2rem); line-height: 1.06; letter-spacing: -2px; margin-bottom: 1.5rem; }
+  h1 em { font-style: normal; color: var(--teal); }
+  .hero-sub { font-size: 1.15rem; font-weight: 300; color: var(--text-muted); max-width: 560px; margin-bottom: 2.5rem; line-height: 1.7; }
+  .cta-row { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+  .btn-primary { display: inline-block; background: var(--teal); color: #fff; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.95rem; padding: 0.75rem 1.75rem; border-radius: 6px; text-decoration: none; transition: background 0.2s; }
+  .btn-primary:hover { background: var(--teal-dark); }
+  .btn-ghost { font-size: 0.85rem; color: var(--text-muted); text-decoration: underline; }
+  .terminal-wrap { max-width: 860px; margin: 3.5rem auto 0; padding: 0 2rem; }
+  .terminal { background: var(--terminal-bg); border-radius: 12px; border: 1px solid #1D9E7530; padding: 1.5rem 1.75rem; }
+  .term-dots { display: flex; gap: 6px; margin-bottom: 1.25rem; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-r { background: #E24B4A; } .dot-y { background: #EF9F27; } .dot-g { background: #639922; }
+  .term-body { font-family: 'DM Mono', monospace; font-size: 0.78rem; line-height: 1.9; }
+  .prompt { color: var(--teal); } .cmd { color: #9FE1CB; } .out { color: var(--teal-mid); opacity: 0.75; } .comment { color: #3B6D11; }
+  .divider { max-width: 860px; margin: 4rem auto; border: none; border-top: 1px solid var(--border); }
+  .features { max-width: 960px; margin: 0 auto; padding: 0 2rem; }
+  .section-label { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 2rem; }
+  .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .feat { background: var(--bg); padding: 1.75rem; }
+  .feat-tag { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--teal); background: var(--teal-light); display: inline-block; padding: 3px 8px; border-radius: 4px; margin-bottom: 1rem; }
+  .feat h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; }
+  .feat p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+  .usecases { max-width: 960px; margin: 4rem auto 0; padding: 0 2rem; }
+  .use-list { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .use-item { display: flex; gap: 1.5rem; padding: 1.25rem 1.5rem; background: var(--bg); border-bottom: 1px solid var(--border); }
+  .use-item:last-child { border-bottom: none; }
+  .use-num { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--teal); padding-top: 3px; min-width: 28px; }
+  .use-item h4 { font-weight: 500; font-size: 0.9rem; margin-bottom: 3px; }
+  .use-item p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+  .stack { max-width: 960px; margin: 4rem auto 0; padding: 0 2rem; }
+  .stack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+  .stack-item { background: var(--bg-soft); border: 1px solid var(--border); border-radius: 8px; padding: 1.1rem 1.25rem; }
+  .stack-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--text-muted); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.08em; }
+  .stack-val { font-size: 0.85rem; font-weight: 500; }
+  .cta-strip { background: var(--teal); margin: 5rem 0 0; padding: 4rem 2rem; text-align: center; }
+  .cta-strip h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.6rem, 3vw, 2.5rem); color: #fff; letter-spacing: -1px; margin-bottom: 1rem; }
+  .cta-strip p { color: rgba(255,255,255,0.75); font-size: 1rem; margin-bottom: 2rem; }
+  .btn-white { display: inline-block; background: #fff; color: var(--teal-dark); font-weight: 500; font-size: 0.95rem; padding: 0.75rem 1.75rem; border-radius: 6px; text-decoration: none; }
+  footer { border-top: 1px solid var(--border); padding: 2rem 2.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-size: 0.8rem; color: var(--text-muted); }
+  .footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; color: var(--text); }
+  .footer-logo span { color: var(--teal); }
+  footer a { color: var(--text-muted); text-decoration: none; }
+  @media (max-width: 640px) { nav { padding: 1rem 1.25rem; } .nav-links { display: none; } .hero { padding: 3rem 1.25rem 2rem; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="#" class="logo">Moor<span>dock</span></a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#usecases">Use Cases</a></li>
+    <li><a href="https://github.com/jhodge6570/moordock">GitHub</a></li>
+  </ul>
+  <a href="mailto:hello@moordock.com" class="nav-cta">Request Early Access</a>
+</nav>
+<section class="hero">
+  <div class="hero-tag">Local LLM &nbsp;·&nbsp; Enterprise AI &nbsp;·&nbsp; On-Premise</div>
+  <h1>Your AI.<br><em>Your Infrastructure.</em><br>Your Rules.</h1>
+  <p class="hero-sub">Moordock anchors large language models inside your own infrastructure — no cloud dependency, no data leakage, full enterprise-grade control. Built for D365, ERP, and mission-critical systems.</p>
+  <div class="cta-row">
+    <a href="mailto:hello@moordock.com" class="btn-primary">Request Early Access</a>
+    <a href="https://github.com/jhodge6570/moordock" class="btn-ghost">View on GitHub →</a>
+  </div>
+</section>
+<div class="terminal-wrap">
+  <div class="terminal">
+    <div class="term-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+    <div class="term-body">
+      <div><span class="prompt">$</span> <span class="cmd">moordock init --model llama3 --target d365</span></div>
+      <div><span class="out">✓ Pulling model weights to local registry...</span></div>
+      <div><span class="out">✓ Configuring D365 MCP server connector...</span></div>
+      <div><span class="out">✓ Setting up on-premise inference endpoint...</span></div>
+      <div><span class="out">✓ Zero data leaves your network.</span></div>
+      <div style="margin-top:0.5rem"><span class="prompt">$</span> <span class="cmd">moordock status</span></div>
+      <div><span class="comment"># Model: Llama 3 8B · Endpoint: localhost:11434 · D365: connected · Cloud: none</span></div>
+    </div>
+  </div>
+</div>
+<hr class="divider">
+<section class="features" id="features">
+  <div class="section-label">Features</div>
+  <div class="features-grid">
+    <div class="feat"><div class="feat-tag">01 · local inference</div><h3>Runs entirely on-premise</h3><p>Models run on your hardware. Your prompts, data, and outputs never touch an external server.</p></div>
+    <div class="feat"><div class="feat-tag">02 · erp native</div><h3>Built for D365 &amp; AX</h3><p>Native MCP server integration for Dynamics 365 and AX. AI-augmented workflows inside systems you already run.</p></div>
+    <div class="feat"><div class="feat-tag">03 · model agnostic</div><h3>Any model, any size</h3><p>Llama, Mistral, Qwen, DeepSeek — swap models without changing your integration layer.</p></div>
+    <div class="feat"><div class="feat-tag">04 · enterprise ready</div><h3>HIPAA, GDPR, SOC 2 ready</h3><p>Air-gapped deployments available. Designed for compliance-sensitive industries.</p></div>
+  </div>
+</section>
+<hr class="divider">
+<section class="usecases" id="usecases">
+  <div class="section-label">Use cases</div>
+  <div class="use-list">
+    <div class="use-item"><span class="use-num">01</span><div><h4>AI-augmented ERP workflows</h4><p>Embed LLM reasoning into D365 business logic — POs, inventory, GL coding — without exposing financials to the cloud.</p></div></div>
+    <div class="use-item"><span class="use-num">02</span><div><h4>Private document intelligence</h4><p>Query contracts, SOPs, and technical manuals with natural language. All processing stays within your four walls.</p></div></div>
+    <div class="use-item"><span class="use-num">03</span><div><h4>Legacy system modernization</h4><p>Retrofit AI into AX 2009/2012 environments. No cloud migration required — AI meets your system where it lives.</p></div></div>
+    <div class="use-item"><span class="use-num">04</span><div><h4>Agentic automation pipelines</h4><p>Multi-step AI agents that orchestrate across your on-premise stack — fully auditable, fully contained, fully yours.</p></div></div>
+  </div>
+</section>
+<hr class="divider">
+<section class="stack">
+  <div class="section-label">Tech stack</div>
+  <div class="stack-grid">
+    <div class="stack-item"><div class="stack-label">Runtime</div><div class="stack-val">Ollama / llama.cpp</div></div>
+    <div class="stack-item"><div class="stack-label">Connector</div><div class="stack-val">C# / .NET 8</div></div>
+    <div class="stack-item"><div class="stack-label">ERP</div><div class="stack-val">D365 / AX 2009–2012</div></div>
+    <div class="stack-item"><div class="stack-label">Protocol</div><div class="stack-val">MCP (Model Context)</div></div>
+    <div class="stack-item"><div class="stack-label">Languages</div><div class="stack-val">C#, X++, Python</div></div>
+    <div class="stack-item"><div class="stack-label">Models</div><div class="stack-val">Llama 3, Mistral, Qwen</div></div>
+  </div>
+</section>
+<div class="cta-strip">
+  <h2>Ready to dock your AI on-premise?</h2>
+  <p>Early access now open for enterprise D365 and AX environments.</p>
+  <a href="mailto:hello@moordock.com" class="btn-white">Request Early Access</a>
+</div>
+<footer>
+  <div class="footer-logo">Moor<span>dock</span></div>
+  <div>Built for enterprise. Anchored locally.</div>
+  <div><a href="mailto:hello@moordock.com">hello@moordock.com</a> · <a href="https://github.com/jhodge6570/moordock">GitHub</a></div>
+  <div>© 2026 Moordock</div>
+</footer>
+</body>
+</html>
